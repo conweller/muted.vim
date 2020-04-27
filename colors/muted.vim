@@ -52,13 +52,14 @@ let s:orange = [
 " General: {{{
 call s:hi("Search", s:none, s:bg[2], s:none)
 call s:hi("Normal", s:fg[0], s:bg[0], s:none)
+call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
 call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[3], s:none, s:bold)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 call s:hi("StatusLine", s:bg[3], s:fg[2], s:bold)
 call s:hi("StatusLineNC", s:bg[0], s:fg[2], s:none)
 call s:hi("VertSplit", s:bg[2], s:none, s:none)
-call s:hi("Folded", s:fg[2], s:bg[1], s:none)
+call s:hi("Folded", s:fg[3], s:bg[1], s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:yellow[1], s:none, s:bold_underline)
 call s:hi('Visual', s:none, s:bg[1], s:none)
@@ -110,10 +111,11 @@ hi! link Title Directory
 
 call s:hi("Keyword", s:blue[0], s:none, s:bold)
 hi! link Statement Keyword
-hi! link Conditional Keyword
-hi! link Repeat Keyword
-hi! link Label Keyword
-hi! link Exception Keyword
+
+call s:hi("Label", s:green[0], s:none, s:bold)
+hi! link Conditional Label
+hi! link Repeat Label
+hi! link Exception Label
 
 call s:hi("Operator", s:red[0], s:none, s:none)
 hi! link Identifier Operator
