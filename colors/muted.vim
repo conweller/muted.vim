@@ -1,7 +1,9 @@
 let g:colors_name = "muted"
 " Functions {{{
 function! s:hi(group,  fg, bg, style)
-  exec "hi " . a:group . " gui=" . a:style[1]  . " guifg=" . a:fg[1] . " guibg=" . a:bg[1] . " ctermfg=" . a:fg[0] . " ctermbg=" . a:bg[0] . " cterm=" . a:style[0]
+  exec "hi " . a:group . " gui=" . a:style[1]  . " guifg=" . a:fg[1] . " guibg="
+        \ . a:bg[1] . " ctermfg=" . a:fg[0] . " ctermbg=" . a:bg[0] . " cterm="
+        \ . a:style[0]
 endfunction
 " }}}
 " Colors: {{{
@@ -12,10 +14,10 @@ let s:italic = ["ITALIC", "ITALIC"]
 let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
 let s:bg = [
-      \ [ '238', '#444444'],
       \ [ '237', '#3A3A3A'],
       \ [ '236', '#303030'],
       \ [ '235', '#262626'],
+      \ [ '234', '#1c1c1c'],
       \ ]
 let s:fg = [
       \ [ '230', '#FFFFD3'],
@@ -52,6 +54,8 @@ let s:orange = [
 " General: {{{
 call s:hi("Search", s:none, s:bg[2], s:none)
 call s:hi("Normal", s:fg[0], s:bg[0], s:none)
+call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
+call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
 call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[3], s:none, s:bold)
@@ -76,7 +80,7 @@ hi! link Question IncSearch
 call s:hi('WildMenu', s:bg[0], s:blue[0], s:bold)
 call s:hi("NonText", s:fg[4], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
-call s:hi('Directory', s:blue[0], s:none, s:bold)
+call s:hi('Directory', s:blue[1], s:none, s:bold)
 
 
 hi! link TablineSel StatusLine
@@ -88,7 +92,7 @@ call s:hi('PmenuSel', s:bg[0], s:orange[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[3], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
 
-call s:hi('MatchParen', s:bg[0], s:orange[0], s:none)
+call s:hi('MatchParen', s:bg[0], s:orange[0], s:bold)
 if has("spell")
   hi! SpellBad guisp=SpellBad
   hi! SpellCap guisp=SpellCap
@@ -101,9 +105,9 @@ if has("spell")
 endif
 " }}}
 " Syntax: {{{
-call s:hi('markdownCode', s:blue[0], s:none, s:none)
+call s:hi('markdownCode', s:blue[0], s:none, s:bold)
 call s:hi('Comment', s:fg[2], s:none, s:italic)
-call s:hi('Conceal', s:blue[0], s:none, s:none)
+call s:hi('Conceal', s:blue[0], s:none, s:bold)
 call s:hi('Underlined', s:none, s:none, s:underline)
 
 hi! link Title Directory
@@ -163,6 +167,14 @@ if has('nvim')
   let g:terminal_color_14 = s:orange[0][1]
   let g:terminal_color_15 = s:fg[2][1]
 endif
+" }}}
+" Diffs: {{{
+call s:hi('DiffDelete', s:bg[0], s:red[0], s:none)
+hi! link DiffRemoved DiffDelete
+call s:hi('DiffAdd', s:bg[0], s:green[0], s:none)
+hi! link DiffAdded DiffAdd
+call s:hi('DiffChange', s:bg[0], s:blue[0], s:none)
+call s:hi('DiffText', s:bg[0], s:yellow[1], s:none)
 " }}}
 let g:limelight_conceal_ctermfg=s:fg[2][0]
 
