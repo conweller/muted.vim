@@ -14,10 +14,10 @@ let s:italic = ["ITALIC", "ITALIC"]
 let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
 let s:bg = [
+      \ [ '238', '#444444'],
       \ [ '237', '#3A3A3A'],
       \ [ '236', '#303030'],
       \ [ '235', '#262626'],
-      \ [ '234', '#1c1c1c'],
       \ ]
 let s:fg = [
       \ [ '230', '#FFFFD3'],
