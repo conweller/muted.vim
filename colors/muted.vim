@@ -28,18 +28,18 @@ let s:fg = [
       \ ]
 let s:blue = [
       \ [ '109', '#87AFAF'],
-      \ [ '110', '#87afd7'],
+      \ [ '110', '#87AFD7'],
       \ ]
 let s:red = [
       \ [ '203', '#FA615C'],
-      \ [ '204', '#F96088'],
+      \ [ '210', '#FF8787'],
       \ ]
 let s:green = [
       \ [ '149', '#B3D847'],
       \ [ '150', '#B2D77C'],
       \ ]
 let s:purple = [
-      \ [ '174', '#D78787'],
+      \ [ '181', '#D7AFAF'],
       \ [ '147', '#AEAEFF'],
       \ ]
 let s:yellow = [
@@ -56,12 +56,13 @@ call s:hi("Search", s:none, s:bg[2], s:none)
 call s:hi("Normal", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
-call s:hi("NormalFloat", s:fg[0], s:bg[2], s:none)
 call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("CursorLineNr", s:fg[3], s:none, s:bold)
+call s:hi("QuickFixLine", s:none, s:bg[3], s:bold)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
-call s:hi("StatusLine", s:bg[3], s:fg[2], s:bold)
-call s:hi("StatusLineNC", s:bg[0], s:fg[2], s:none)
+hi! link CursorColumn CursorLine
+call s:hi("StatusLine", s:fg[0], s:bg[2], s:bold)
+call s:hi("StatusLineNC", s:fg[3], s:bg[2], s:none)
 call s:hi("VertSplit", s:bg[2], s:none, s:none)
 call s:hi("Folded", s:fg[3], s:bg[1], s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
@@ -69,7 +70,7 @@ call s:hi("Todo", s:yellow[1], s:none, s:bold_underline)
 call s:hi('Visual', s:none, s:bg[1], s:none)
 hi! link VisualNOS Visual
 
-call s:hi("ErrorMsg", s:red[0], s:none, s:none)
+call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
 hi! link WarningMsg ErrorMsg
 
 call s:hi('IncSearch',s:bg[0], s:orange[1], s:bold)
@@ -87,9 +88,9 @@ hi! link TablineSel StatusLine
 hi! link Tabline StatusLineNC
 call s:hi("TablineFill", s:bg[2], s:bg[2], s:none)
 
-call s:hi('Pmenu', s:fg[1], s:bg[2], s:none)
+call s:hi('Pmenu', s:fg[0], s:bg[3], s:none)
 call s:hi('PmenuSel', s:bg[0], s:orange[0], s:bold)
-call s:hi('PmenuSbar', s:none, s:bg[3], s:none)
+call s:hi('PmenuSbar', s:none, s:bg[2], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
 
 call s:hi('MatchParen', s:bg[0], s:orange[0], s:bold)
@@ -121,7 +122,7 @@ hi! link Conditional Label
 hi! link Repeat Label
 hi! link Exception Label
 
-call s:hi("Operator", s:red[0], s:none, s:none)
+call s:hi("Operator", s:red[1], s:none, s:none)
 hi! link Identifier Operator
 hi! link Boolean Operator
 hi! link Constant Operator
@@ -130,10 +131,11 @@ hi! link SpecialKey Operator
 
 call s:hi("String", s:green[1], s:none, s:none)
 
+
 call s:hi("Type", s:purple[0], s:none, s:none)
-hi! link Function Type
 hi! link Constant Type
 hi! link Character Type
+hi! link Function Type
 
 call s:hi("PreProc", s:orange[0], s:none, s:none)
 hi! link Include PreProc
