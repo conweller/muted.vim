@@ -13,6 +13,7 @@ let s:undercurl = ["UNDERCURL", "UNDERCURL"]
 let s:italic = ["ITALIC", "ITALIC"]
 let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
+let s:bold_italic = ["BOLD,ITALIC", "BOLD,ITALIC"]
 let s:bg = [
       \ [ '238', '#444444'],
       \ [ '237', '#3A3A3A'],
@@ -55,9 +56,9 @@ let s:orange = [
 call s:hi("Search", s:none, s:bg[2], s:none)
 call s:hi("Normal", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
-call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
-call s:hi("LineNr", s:fg[3], s:none, s:none)
-call s:hi("CursorLineNr", s:fg[3], s:none, s:bold)
+call s:hi("TermCursor", s:bg[0], s:green[0], s:none)
+call s:hi("LineNr", s:fg[3], s:bg[1], s:none)
+call s:hi("CursorLineNr", s:fg[3], s:bg[1], s:none)
 call s:hi("QuickFixLine", s:none, s:bg[3], s:bold)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
@@ -66,7 +67,7 @@ call s:hi("StatusLineNC", s:fg[3], s:bg[2], s:none)
 call s:hi("VertSplit", s:bg[2], s:none, s:none)
 call s:hi("Folded", s:fg[3], s:bg[1], s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
-call s:hi("Todo", s:yellow[1], s:none, s:bold_underline)
+call s:hi("Todo", s:yellow[1], s:none, s:bold)
 call s:hi('Visual', s:none, s:bg[1], s:none)
 hi! link VisualNOS Visual
 
@@ -76,7 +77,6 @@ hi! link WarningMsg ErrorMsg
 call s:hi('IncSearch',s:bg[0], s:orange[1], s:bold)
 hi! link MoreMsg IncSearch
 hi! link MoreMsg IncSearch
-hi! link Question IncSearch
 
 call s:hi('WildMenu', s:bg[0], s:blue[0], s:bold)
 call s:hi("NonText", s:fg[4], s:none, s:none)
@@ -84,8 +84,8 @@ call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 call s:hi('Directory', s:blue[1], s:none, s:bold)
 
 
-hi! link TablineSel StatusLine
-hi! link Tabline StatusLineNC
+call s:hi("TablineSel", s:fg[0], s:bg[2], s:bold)
+call s:hi("Tabline", s:fg[3], s:bg[2], s:none)
 call s:hi("TablineFill", s:bg[2], s:bg[2], s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[3], s:none)
@@ -114,7 +114,9 @@ call s:hi('Underlined', s:none, s:none, s:underline)
 hi! link Title Directory
 
 
+
 call s:hi("Keyword", s:blue[0], s:none, s:bold)
+call s:hi("Question", s:purple[1], s:none, s:bold)
 hi! link Statement Keyword
 
 call s:hi("Label", s:green[0], s:none, s:bold)
@@ -129,7 +131,7 @@ hi! link Constant Operator
 hi! link Character Operator
 hi! link SpecialKey Operator
 
-call s:hi("String", s:green[1], s:none, s:none)
+call s:hi("String", s:green[1], s:none, s:italic)
 
 
 call s:hi("Type", s:purple[0], s:none, s:none)
@@ -154,20 +156,20 @@ hi! link Typedef StorageClass
 if has('nvim')
   let g:terminal_color_0 = s:bg[1][1]
   let g:terminal_color_1 = s:red[1][1]
-  let g:terminal_color_2 = s:yellow[1][1]
-  let g:terminal_color_3 = s:green[1][1]
+  let g:terminal_color_2 = s:green[1][1]
+  let g:terminal_color_3 = s:yellow[1][1]
   let g:terminal_color_4 = s:blue[1][1]
   let g:terminal_color_5 = s:purple[1][1]
   let g:terminal_color_6 = s:orange[1][1]
   let g:terminal_color_7 = s:fg[0][1]
   let g:terminal_color_8 = s:fg[2][1]
   let g:terminal_color_9 = s:red[0][1]
-  let g:terminal_color_10 = s:yellow[0][1]
-  let g:terminal_color_11 = s:green[0][1]
+  let g:terminal_color_10 = s:green[0][1]
+  let g:terminal_color_11 = s:yellow[0][1]
   let g:terminal_color_12 = s:blue[0][1]
   let g:terminal_color_13 = s:purple[0][1]
   let g:terminal_color_14 = s:orange[0][1]
-  let g:terminal_color_15 = s:fg[2][1]
+  let g:terminal_color_15 = s:fg[1][1]
 endif
 " }}}
 " Diffs: {{{
@@ -177,6 +179,29 @@ call s:hi('DiffAdd', s:bg[0], s:green[0], s:none)
 hi! link DiffAdded DiffAdd
 call s:hi('DiffChange', s:bg[0], s:blue[0], s:none)
 call s:hi('DiffText', s:bg[0], s:yellow[1], s:none)
+" }}}
+" LSP: {{{
+call s:hi("LspDiagnosticsError", s:red[0], s:bg[3], s:bold)
+call s:hi("LspDiagnosticsWarning", s:yellow[1], s:bg[3], s:bold)
+hi! link LspDiagnosticInformation LspDiagnosticsWarning
+hi! link LspDiagnosticHint LspDiagnosticsWarning
+hi! link LspReferenceText LspDiagnosticsWarning
+hi! link LspReferenceRead LspDiagnosticsWarning
+hi! link LspReferenceWrite LspDiagnosticsWarning
+
+hi! link CocErrorSign LspDiagnosticsError
+hi! link CocWarningSign LspDiagnosticsWarning
+hi! link CocInfoSign LspDiagnosticsWarning
+hi! link CocHintSign LspDiagnosticsWarning
+
+" }}}
+" Sneak: {{{
+call s:hi("Sneak", s:bg[0], s:yellow[1], s:bold)
+call s:hi("SneakScope", s:bg[0], s:fg[0], s:bold)
+" }}}
+" Findr: {{{
+call s:hi("FindrMatch", s:bg[3], s:yellow[1], s:bold_underline)
+call s:hi("FindrDirPartial", s:red[0], s:none, s:bold)
 " }}}
 let g:limelight_conceal_ctermfg=s:fg[2][0]
 
