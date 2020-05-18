@@ -7,6 +7,7 @@ function! s:hi(group,  fg, bg, style)
 endfunction
 " }}}
 " Colors: {{{
+" Constants: {{{
 let s:none = ["NONE", "NONE"]
 let s:bold = ["BOLD", "BOLD"]
 let s:undercurl = ["UNDERCURL", "UNDERCURL"]
@@ -14,11 +15,13 @@ let s:italic = ["ITALIC", "ITALIC"]
 let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
 let s:bold_italic = ["BOLD,ITALIC", "BOLD,ITALIC"]
+" }}}
 let s:bg = [
       \ [ '238', '#444444'],
       \ [ '237', '#3A3A3A'],
       \ [ '236', '#303030'],
       \ [ '235', '#262626'],
+      \ [ '234', '#1c1c1c'],
       \ ]
 let s:fg = [
       \ [ '230', '#FFFFD3'],
@@ -54,17 +57,21 @@ let s:orange = [
 " }}}
 " General: {{{
 call s:hi("Search", s:none, s:bg[2], s:none)
+call s:hi("ModeMsg", s:yellow[1], s:bg[1], s:none)
 call s:hi("Normal", s:fg[0], s:bg[0], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 call s:hi("TermCursor", s:bg[0], s:green[0], s:none)
 call s:hi("LineNr", s:fg[3], s:bg[1], s:none)
-call s:hi("CursorLineNr", s:fg[3], s:bg[1], s:none)
+call s:hi("SignColumn", s:none, s:bg[1], s:none)
 call s:hi("QuickFixLine", s:none, s:bg[3], s:bold)
+call s:hi("CursorLineNr", s:fg[3], s:bg[2], s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("StatusLine", s:fg[0], s:bg[2], s:bold)
-call s:hi("StatusLineNC", s:fg[3], s:bg[2], s:none)
-call s:hi("VertSplit", s:bg[2], s:none, s:none)
+call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
+call s:hi("StatusLineNC", s:fg[4], s:bg[2], s:none)
+" call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
+" call s:hi("StatusLineNC", s:fg[4], s:bg[2], s:none)
+call s:hi("VertSplit", s:bg[3], s:bg[0], s:none)
 call s:hi("Folded", s:fg[3], s:bg[1], s:none)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:yellow[1], s:none, s:bold)
@@ -72,6 +79,7 @@ call s:hi('Visual', s:none, s:bg[1], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
+call s:hi('Substitute',s:green[0], s:bg[3], s:bold)
 hi! link WarningMsg ErrorMsg
 
 call s:hi('IncSearch',s:bg[0], s:orange[1], s:bold)
@@ -84,16 +92,16 @@ call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 call s:hi('Directory', s:blue[1], s:none, s:bold)
 
 
-call s:hi("TablineSel", s:fg[0], s:bg[2], s:bold)
-call s:hi("Tabline", s:fg[3], s:bg[2], s:none)
-call s:hi("TablineFill", s:bg[2], s:bg[2], s:none)
+call s:hi("TablineSel", s:fg[0], s:bg[0], s:bold)
+call s:hi("Tabline", s:fg[3], s:bg[3], s:none)
+call s:hi("TablineFill", s:bg[2], s:bg[3], s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[3], s:none)
 call s:hi('PmenuSel', s:bg[0], s:orange[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[2], s:none)
-call s:hi('PmenuThumb', s:none, s:fg[1], s:none)
+call s:hi('PmenuThumb', s:none, s:fg[3], s:none)
 
-call s:hi('MatchParen', s:bg[0], s:orange[0], s:bold)
+call s:hi('MatchParen', s:none, s:bg[3], s:bold)
 if has("spell")
   hi! SpellBad guisp=SpellBad
   hi! SpellCap guisp=SpellCap
@@ -203,6 +211,7 @@ call s:hi("SneakScope", s:bg[0], s:fg[0], s:bold)
 call s:hi("FindrMatch", s:bg[3], s:yellow[1], s:bold_underline)
 call s:hi("FindrDirPartial", s:red[0], s:none, s:bold)
 " }}}
-let g:limelight_conceal_ctermfg=s:fg[2][0]
-
+" Highlighted Yank: {{{
+call s:hi("HighlightedyankRegion", s:none, s:bg[4], s:none)
+" }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
