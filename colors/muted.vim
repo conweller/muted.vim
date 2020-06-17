@@ -68,16 +68,17 @@ call s:hi("Normal", s:fg[0], s:none, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[3], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 call s:hi("TermCursor", s:bg[0], s:green[0], s:none)
-call s:hi("LineNr", s:fg[3], s:bg[1], s:none)
+call s:hi("LineNr", s:fg[4], s:none, s:none)
 call s:hi("SignColumn", s:none, s:bg[1], s:none)
 call s:hi("QuickFixLine", s:none, s:bg[2], s:bold)
-call s:hi("CursorLineNr", s:fg[3], s:bg[2], s:none)
+call s:hi("CursorLineNr", s:fg[4], s:bg[1], s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
 call s:hi("StatusLineNC", s:fg[4], s:bg[3], s:none)
 call s:hi("VertSplit", s:bg[4], s:none, s:none)
-call s:hi("Folded", s:fg[3], s:bg[1], s:none)
+call s:hi("Folded", s:bg[1], s:fg[4], s:none)
+call s:hi("FoldColumn", s:orange[0], s:fg[4], s:bold)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:yellow[1], s:none, s:bold)
 call s:hi('Visual', s:none, s:bg[1], s:none)
@@ -87,12 +88,12 @@ call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
 call s:hi('Substitute',s:green[0], s:bg[3], s:bold)
 hi! link WarningMsg ErrorMsg
 
-call s:hi('IncSearch',s:bg[0], s:orange[1], s:bold)
+call s:hi('IncSearch',s:bg[0], s:yellow[1], s:bold)
 hi! link MoreMsg IncSearch
 hi! link MoreMsg IncSearch
 
 call s:hi('WildMenu', s:bg[0], s:blue[0], s:bold)
-call s:hi("NonText", s:fg[4], s:none, s:none)
+call s:hi("NonText", s:bg[4], s:none, s:none)
 call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
 call s:hi('Directory', s:blue[1], s:none, s:bold)
 
@@ -202,6 +203,20 @@ hi! link LspReferenceText LspDiagnosticsWarning
 hi! link LspReferenceRead LspDiagnosticsWarning
 hi! link LspReferenceWrite LspDiagnosticsWarning
 
+
+exe 'hi! LspDiagnosticsUnderlineError guisp='
+      \.s:red[0][1]
+      \.' gui=undercurl cterm=undercurl'
+exe 'hi! LspDiagnosticsUnderlineWarning guisp='
+      \.s:yellow[1][1]
+      \.' gui=undercurl cterm=undercurl'
+exe 'hi! LspDiagnosticsUnderlineInformation guisp='
+      \.s:yellow[1][1]
+      \.' gui=undercurl cterm=undercurl'
+exe 'hi! LspDiagnosticsUnderlineHint guisp='
+      \.s:yellow[1][1]
+      \.' gui=undercurl cterm=undercurl'
+
 hi! link CocErrorSign LspDiagnosticsError
 hi! link CocWarningSign LspDiagnosticsWarning
 hi! link CocInfoSign LspDiagnosticsWarning
@@ -210,7 +225,7 @@ hi! link CocHintSign LspDiagnosticsWarning
 
 " }}}
 " Findr: {{{
-call s:hi("FindrMatch", s:yellow[1], s:none, s:bold)
+call s:hi("FindrMatch", s:bg[0], s:yellow[1], s:bold)
 call s:hi("FindrSelected", s:none, s:bg[3], s:none)
 call s:hi("FindrMatchSelected", s:yellow[1], s:bg[3], s:bold)
 call s:hi("FindrDirPartial", s:green[1], s:none, s:bold)
@@ -219,8 +234,5 @@ call s:hi("FindrDirPartial", s:green[1], s:none, s:bold)
 hi! link fzf1 Statusline
 hi! link fzf2 Statusline
 hi! link fzf3 Statusline
-" }}}
-" Highlighted Yank: {{{
-call s:hi("HighlightedyankRegion", s:none, s:bg[4], s:none)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
