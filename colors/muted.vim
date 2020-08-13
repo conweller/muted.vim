@@ -3,6 +3,7 @@ if version > 580
   if exists("syntax_on")
     syntax reset
   endif
+
 endif
 let g:colors_name = "muted"
 " Functions {{{
@@ -12,7 +13,6 @@ function! s:hi(group,  fg, bg, style)
         \ . a:style[0]
 endfunction
 " }}}
-" Colors: {{{
 " Constants: {{{
 let s:none = ["NONE", "NONE"]
 let s:bold = ["BOLD", "BOLD"]
@@ -22,6 +22,7 @@ let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
 let s:bold_italic = ["BOLD,ITALIC", "BOLD,ITALIC"]
 " }}}
+" Colors: {{{
 let s:bg = [
       \ [ '236', '#303030'],
       \ [ '235', '#262626'],
@@ -33,8 +34,8 @@ let s:fg = [
       \ [ '230', '#FFFFD3'],
       \ [ '180', '#D5B082'],
       \ [ '245', '#8a8a8a'],
-      \ [ '243', '#767676'],
-      \ [ '241', '#626262'],
+      \ [ '240', '#585858'],
+      \ [ '238', '#444444'],
       \ ]
 let s:blue = [
       \ [ '109', '#87AFAF'],
@@ -46,7 +47,7 @@ let s:red = [
       \ ]
 let s:green = [
       \ [ '149', '#B3D847'],
-      \ [ '150', '#B2D77C'],
+      \ [ '150', '#afd787'],
       \ ]
 let s:purple = [
       \ [ '181', '#D7AFAF'],
@@ -63,25 +64,25 @@ let s:orange = [
 " }}}
 " General: {{{
 call s:hi("Search", s:none, s:bg[2], s:none)
-call s:hi("ModeMsg", s:yellow[1], s:bg[1], s:none)
+call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
 call s:hi("Normal", s:fg[0], s:none, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[3], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
-call s:hi("TermCursor", s:bg[0], s:green[0], s:none)
-call s:hi("LineNr", s:fg[4], s:none, s:none)
+call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
+call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("SignColumn", s:none, s:bg[1], s:none)
 call s:hi("QuickFixLine", s:none, s:bg[2], s:bold)
-call s:hi("CursorLineNr", s:fg[4], s:bg[1], s:none)
+call s:hi("CursorLineNr", s:fg[3], s:bg[1], s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
 call s:hi("StatusLine", s:fg[0], s:bg[3], s:bold)
-call s:hi("StatusLineNC", s:fg[4], s:bg[3], s:none)
+call s:hi("StatusLineNC", s:fg[2], s:bg[3], s:none)
 call s:hi("VertSplit", s:bg[4], s:none, s:none)
-call s:hi("Folded", s:bg[1], s:fg[4], s:none)
+call s:hi("Folded", s:fg[2], s:fg[4], s:none)
 call s:hi("FoldColumn", s:orange[0], s:fg[4], s:bold)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:yellow[1], s:none, s:bold)
-call s:hi('Visual', s:none, s:bg[1], s:none)
+call s:hi('Visual', s:none, s:bg[2], s:none)
 hi! link VisualNOS Visual
 
 call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
@@ -94,8 +95,8 @@ hi! link MoreMsg IncSearch
 
 call s:hi('WildMenu', s:bg[0], s:blue[0], s:bold)
 call s:hi("NonText", s:bg[4], s:none, s:none)
-call s:hi("EndOfBuffer", s:bg[0], s:none, s:none)
-call s:hi('Directory', s:blue[1], s:none, s:bold)
+call s:hi("EndOfBuffer", s:fg[4], s:none, s:none)
+call s:hi('Directory', s:fg[0], s:none, s:bold)
 
 
 call s:hi("TablineSel", s:fg[0], s:bg[3], s:bold)
@@ -107,7 +108,7 @@ call s:hi('PmenuSel', s:bg[0], s:orange[0], s:bold)
 call s:hi('PmenuSbar', s:none, s:bg[4], s:none)
 call s:hi('PmenuThumb', s:none, s:fg[3], s:none)
 
-call s:hi('MatchParen', s:none, s:bg[3], s:bold)
+call s:hi('MatchParen', s:bg[0], s:blue[1], s:bold)
 if has("spell")
   hi! SpellBad guisp=SpellBad
   hi! SpellCap guisp=SpellCap
@@ -168,7 +169,7 @@ hi! link Typedef StorageClass
 " }}}
 " Terminal: {{{
 if has('nvim')
-  let g:terminal_color_0 = s:bg[3][1]
+  let g:terminal_color_0 = s:bg[1][1]
   let g:terminal_color_1 = s:red[1][1]
   let g:terminal_color_2 = s:green[1][1]
   let g:terminal_color_3 = s:yellow[1][1]
@@ -183,7 +184,7 @@ if has('nvim')
   let g:terminal_color_12 = s:blue[0][1]
   let g:terminal_color_13 = s:purple[0][1]
   let g:terminal_color_14 = s:orange[0][1]
-  let g:terminal_color_15 = s:fg[1][1]
+  let g:terminal_color_15 = s:bg[3][1]
 endif
 " }}}
 " Diffs: {{{
@@ -225,14 +226,24 @@ hi! link CocHintSign LspDiagnosticsWarning
 
 " }}}
 " Findr: {{{
-call s:hi("FindrMatch", s:bg[0], s:yellow[1], s:bold)
-call s:hi("FindrSelected", s:none, s:bg[3], s:none)
-call s:hi("FindrMatchSelected", s:yellow[1], s:bg[3], s:bold)
-call s:hi("FindrDirPartial", s:green[1], s:none, s:bold)
+call s:hi("FindrMatch", s:fg[0], s:bg[4], s:bold)
+call s:hi("FindrSelected", s:none, s:bg[1], s:none)
+call s:hi("FindrMatchSelected", s:yellow[1], s:bg[2], s:bold)
+call s:hi("FindrDirPartial", s:fg[0], s:none, s:bold)
 " }}}
 " FZF: {{{
 hi! link fzf1 Statusline
 hi! link fzf2 Statusline
 hi! link fzf3 Statusline
+" }}}
+" StatusLine: {{{
+" call s:hi("StatusOuter", s:bg[4], s:green[0], s:bold)
+" call s:hi("StatusOuterSep", s:green[0], s:green[1], s:none)
+" call s:hi("StatusInner", s:bg[4], s:green[1], s:bold)
+" call s:hi("StatusInnerSep", s:green[1], s:bg[3], s:none)
+" call s:hi("StatusMid", s:fg[2], s:bg[3], s:none)
+" call s:hi("StatusNone", s:bg[3], s:bg[3], s:none)
+" call s:hi("StatusLine", s:green[0], s:green[0], s:none)
+" call s:hi("StatusLineNC", s:green[0], s:green[0], s:none)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
