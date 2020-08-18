@@ -69,16 +69,17 @@ call s:hi("Normal", s:fg[0], s:none, s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[3], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
+call s:hi("TermCursorNC", s:fg[0], s:bg[1], s:none)
 call s:hi("LineNr", s:fg[3], s:none, s:none)
 call s:hi("SignColumn", s:none, s:bg[1], s:none)
 call s:hi("QuickFixLine", s:none, s:bg[2], s:bold)
 call s:hi("CursorLineNr", s:fg[3], s:bg[1], s:none)
 call s:hi("CursorLine", s:none, s:bg[1], s:none)
 hi! link CursorColumn CursorLine
-call s:hi("StatusLine", s:fg[0], s:fg[3], s:bold)
-call s:hi("StatusLineNC", s:fg[2], s:fg[3], s:none)
+call s:hi("StatusLine", s:fg[0], s:fg[4], s:bold)
+call s:hi("StatusLineNC", s:fg[2], s:fg[4], s:none)
 call s:hi("VertSplit", s:fg[4], s:none, s:none)
-call s:hi("Folded", s:fg[2], s:fg[4], s:none)
+call s:hi("Folded", s:fg[2], s:bg[1], s:none)
 call s:hi("FoldColumn", s:orange[0], s:fg[4], s:bold)
 call s:hi("Error", s:bg[0], s:red[0], s:bold)
 call s:hi("Todo", s:yellow[1], s:none, s:bold)
@@ -89,13 +90,13 @@ call s:hi("ErrorMsg", s:red[0], s:none, s:bold)
 call s:hi('Substitute',s:green[0], s:bg[3], s:bold)
 hi! link WarningMsg ErrorMsg
 
-call s:hi('IncSearch',s:none, s:bg[4], s:bold)
+call s:hi('IncSearch',s:none, s:fg[4], s:bold)
 hi! link MoreMsg IncSearch
 
 call s:hi('WildMenu', s:bg[0], s:blue[0], s:bold)
-call s:hi("NonText", s:bg[2], s:none, s:none)
+call s:hi("NonText", s:fg[4], s:none, s:none)
 call s:hi("EndOfBuffer", s:fg[4], s:none, s:none)
-call s:hi('Directory', s:fg[0], s:none, s:bold)
+call s:hi('Directory', s:blue[1], s:none, s:bold)
 
 
 call s:hi("TablineSel", s:fg[0], s:fg[3], s:bold)
@@ -225,9 +226,8 @@ hi! link CocHintSign LspDiagnosticsWarning
 
 " }}}
 " Findr: {{{
-call s:hi("FindrMatch", s:fg[0], s:bg[3], s:bold)
+call s:hi("FindrMatch", s:none, s:fg[4], s:bold)
 call s:hi("FindrSelected", s:none, s:bg[1], s:none)
-call s:hi("FindrMatchSelected", s:yellow[1], s:bg[2], s:bold)
-call s:hi("FindrDirPartial", s:fg[0], s:none, s:bold)
+call s:hi("FindrDirPartial", s:green[1], s:none, s:bold)
 " }}}
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
