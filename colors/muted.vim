@@ -19,6 +19,9 @@ let s:none = ["NONE", "NONE"]
 let s:bold = ["BOLD", "BOLD"]
 let s:undercurl = ["UNDERCURL", "UNDERCURL"]
 let s:italic = ["ITALIC", "ITALIC"]
+if (exists('g:muted_italics') && g:muted_italics == 0) || !has('nvim')
+    let s:italic = ["NONE", "NONE"]
+endif
 let s:underline = ["UNDERLINE", "UNDERLINE"]
 let s:bold_underline = ["BOLD,UNDERLINE", "BOLD,UNDERLINE"]
 let s:bold_italic = ["BOLD,ITALIC", "BOLD,ITALIC"]
