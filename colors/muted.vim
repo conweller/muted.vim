@@ -2,6 +2,7 @@ if version > 580
   hi clear
   if exists("syntax_on")
     syntax reset
+    highlight clear
   endif
 
 endif
