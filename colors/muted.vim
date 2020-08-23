@@ -63,9 +63,9 @@ let s:orange = [
       \ ]
 " }}}
 " General: {{{
-call s:hi("Search", s:none, s:bg[2], s:none)
+call s:hi("Search", s:none, s:bg[4], s:none)
 call s:hi("ModeMsg", s:fg[0], s:none, s:bold)
-call s:hi("Normal", s:fg[0], s:none, s:none)
+call s:hi("Normal", s:fg[0], s:bg[0], s:none)
 call s:hi("NormalFloat", s:fg[0], s:bg[3], s:none)
 call s:hi("Cursor", s:bg[0], s:fg[0], s:none)
 call s:hi("TermCursor", s:bg[0], s:fg[0], s:none)
@@ -99,9 +99,9 @@ call s:hi("EndOfBuffer", s:fg[4], s:none, s:none)
 call s:hi('Directory', s:blue[1], s:none, s:bold)
 
 
-call s:hi("TablineSel", s:fg[0], s:fg[3], s:bold)
-call s:hi("Tabline", s:fg[2], s:fg[3], s:none)
-call s:hi("TablineFill", s:fg[2], s:fg[3], s:none)
+call s:hi("TablineSel", s:fg[0], s:fg[4], s:bold)
+call s:hi("Tabline", s:fg[2], s:fg[4], s:none)
+call s:hi("TablineFill", s:fg[2], s:fg[4], s:none)
 
 call s:hi('Pmenu', s:fg[0], s:bg[2], s:none)
 call s:hi('PmenuSel', s:bg[0], s:orange[0], s:bold)
@@ -110,10 +110,12 @@ call s:hi('PmenuThumb', s:none, s:fg[3], s:none)
 
 call s:hi('MatchParen', s:fg[0], s:fg[3], s:bold)
 if has("spell")
-  hi! SpellBad guisp=SpellBad
-  hi! SpellCap guisp=SpellCap
-  hi! SpellLocal guisp=SpellLocal
-  hi! SpellRare guisp=SpellRare
+  if has('nvim')
+    hi! SpellBad guisp=SpellBad
+    hi! SpellCap guisp=SpellCap
+    hi! SpellLocal guisp=SpellLocal
+    hi! SpellRare guisp=SpellRare
+  endif
   call s:hi('SpellCap', s:yellow[1], s:none, s:undercurl)
   call s:hi('SpellLocal', s:yellow[1], s:none, s:undercurl)
   call s:hi('SpellRare', s:yellow[1], s:none, s:undercurl)
@@ -125,7 +127,6 @@ call s:hi('markdownCode', s:blue[0], s:none, s:bold)
 call s:hi('Comment', s:fg[2], s:none, s:italic)
 call s:hi('Conceal', s:blue[0], s:none, s:bold)
 call s:hi('Underlined', s:none, s:none, s:underline)
-
 hi! link Title Directory
 
 
